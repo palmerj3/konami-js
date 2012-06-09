@@ -7,7 +7,7 @@ Example:
 
 ```
 (function() {
-  konami = new Konami();
+  var konami = new Konami();
   konami.onSuccess(function() {
     alert('You win!');
   });
