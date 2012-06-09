@@ -21,11 +21,11 @@ var Konami = function () {
       progress.push(e.keyCode);
       check_progress();
     },
-    initialize_listeners = function () {
+    addEventListeners = function () {
       window.addEventListener('keydown', keydown_listener, false);
     };
 
-  initialize_listeners();
+  addEventListeners();
 
   return {
     onSuccess: function (c) {
