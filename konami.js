@@ -23,16 +23,16 @@ var Konami = function () {
     },
     _addEventListeners = function () {
       if (_listenerTarget.addEventListener) {
-          _listenerTarget.addEventListener('keydown', _keydown_listener, false);
+        _listenerTarget.addEventListener('keydown', _keydown_listener, false);
       } else if (_listenerTarget.attachEvent) {
-          _listenerTarget.attachEvent('onkeydown', _keydown_listener);
+        _listenerTarget.attachEvent('onkeydown', _keydown_listener);
       } else {
-          _listenerTarget.onkeydown = _keydown_listener;
+        _listenerTarget.onkeydown = _keydown_listener;
       }
     };
-  
+
   return {
-    onSuccess : function (){},
+    onSuccess : function () {},
     listenerTarget : window,
     init : function () {
       _onSuccess = this.onSuccess;
@@ -40,5 +40,5 @@ var Konami = function () {
 
       _addEventListeners();
     }
-  }
+  };
 };
