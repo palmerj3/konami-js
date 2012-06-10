@@ -5,9 +5,10 @@
   <script type="text/javascript">
     (function() {
       var konami = new Konami();
-      konami.onSuccess(function() {
+      konami.onSuccess = function () {
         alert('You win!');
-      });
+      };
+      konami.init();
     }());
   </script>
 </head>
