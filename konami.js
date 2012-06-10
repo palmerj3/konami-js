@@ -24,7 +24,7 @@ var Konami = function () {
     addEventListeners = function () {
       if (window.addEventListener) {
           window.addEventListener('keydown', keydown_listener, false);
-      } else if (window.attachEvent) {}
+      } else if (window.attachEvent) {
           window.attachEvent('onkeydown', keydown_listener);
       } else {
           window.onkeydown = keydown_listener;
