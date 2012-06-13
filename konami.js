@@ -1,39 +1,32 @@
-var Konami = function () {
-  'use strict';
-  var _CODE = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65, 13],
-    _CODE_LEN = _CODE.length,
-    _listenerTarget = null,
-    _onSuccess = null,
-    next = 0,
-    _keydown_listener = function (e) {
-      if(e.keyCode === _CODE[next]) {
-        next += 1;
-        if (next === _CODE_LEN) {
-          _onSuccess();
-          next = 0;
-        }
-      } else {
+var konami = (function () {
+    'use strict';
+
+    var CODE = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65, 13],
+        code_len = CODE.length,
+        events = {},
         next = 0;
-      }
-    },
-    _addEventListeners = function () {
-      if (_listenerTarget.addEventListener) {
-        _listenerTarget.addEventListener('keydown', _keydown_listener, false);
-      } else if (_listenerTarget.attachEvent) {
-        _listenerTarget.attachEvent('onkeydown', _keydown_listener);
-      } else {
-        _listenerTarget.onkeydown = _keydown_listener;
-      }
-    };
 
-  return {
-    onSuccess : function () {},
-    listenerTarget : window,
-    init : function () {
-      _onSuccess = this.onSuccess;
-      _listenerTarget = this.listenerTarget;
-
-      _addEventListeners();
+    function log_key(e) {
+        if (e.keyCode == CODE[next]) {
+            next++;
+            if (next == code_len) {
+                events.onSuccess && events.onSuccess();
+                next = 0;
+            }
+        } else {
+            next = 0;
+        }
     }
-  };
-};
+
+    if (window.addEventListener) {
+        addEventListener('keydown', log_key);
+    } else {
+        onkeydown = (function (old) {
+            return old ? function (e) {
+                log_key(e);
+                old(e);
+            } : log_key;
+        }(onkeydown));
+    }
+    return events;
+})();
