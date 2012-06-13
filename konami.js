@@ -1,25 +1,20 @@
 var Konami = function () {
   'use strict';
   var _CODE = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65, 13],
+    _CODE_LEN = _CODE.length,
     _listenerTarget = null,
     _onSuccess = null,
-    _progress = [],
-    _check_progress = function () {
-      var code = _CODE.slice(0),
-        segment = code.splice(0, _progress.length);
-
-      if (_progress.join(',') === segment.join(',')) {
-        if (_progress.length === _CODE.length) {
-          _progress = [];
+    next = 0,
+    _keydown_listener = function (e) {
+      if(e.keyCode === _CODE[next]) {
+        next += 1;
+        if (next === _CODE_LEN) {
           _onSuccess();
+          next = 0;
         }
       } else {
-        _progress = [];
+        next = 0;
       }
-    },
-    _keydown_listener = function (e) {
-      _progress.push(e.keyCode);
-      _check_progress();
     },
     _addEventListeners = function () {
       if (_listenerTarget.addEventListener) {
