@@ -22,7 +22,16 @@ var Konami = function () {
       } else if (_listenerTarget.attachEvent) {
         _listenerTarget.attachEvent('onkeydown', _keydown_listener);
       } else {
-        _listenerTarget.onkeydown = _keydown_listener;
+        if (typeof(_listenerTarget.onkeydown) === 'function') {
+          var preservedListenerTargetFunction = _listenerTarget.onkeydown;
+
+          _listenerTarget.onkeydown = function(e) {
+            preservedListenerTargetFunction(e);
+            _keydown_listener(e);
+          };
+        } else {
+          _listenerTarget.onkeydown = _keydown_listener;
+        }
       }
     };
 
