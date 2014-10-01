@@ -46,3 +46,7 @@ var Konami = function () {
     }
   };
 };
+
+if (typeof(module) !== 'undefined') {
+  module.exports = Konami;
+}

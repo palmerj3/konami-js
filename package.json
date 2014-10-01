@@ -1,0 +1,19 @@
+{
+  "name": "konamicode",
+  "version": "1.0.0",
+  "description": "Simple system for detecting the entry of the famous Konami code and attaching an event",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/palmerj3/konami-js.git"
+  },
+  "author": "Jason Palmer",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/palmerj3/konami-js/issues"
+  },
+  "homepage": "https://github.com/palmerj3/konami-js"
+}
