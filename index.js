@@ -1,1 +1,1 @@
-module.exports.Konami = require('konami');
+module.exports.Konami = require('./konami');
